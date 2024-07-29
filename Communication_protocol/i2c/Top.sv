@@ -1,8 +1,10 @@
 typedef enum { 
+    idle,
     start,
     address,
     w_r,
-    data
+    data,
+    stop
 } state;
 
 module i2c (
@@ -25,12 +27,15 @@ module i2c (
     reg SCL_en_reg = 1;
     reg SDA_en_reg = 1;
 
+    reg [6:0] address_reg;
+    reg [7:0] data_reg;
+
     state current_state, next_state;
 
     
     always @(posedge clk, negedge nrst) begin
         if (!nrst) begin
-            current_state <= start;
+            current_state <= idle;
         end else begin
             current_state <= next_state;
         end
@@ -38,9 +43,18 @@ module i2c (
 
     always @(*) begin
         case (state)
-            start: begin
+            idle: begin
                 SCL_reg = 1;
-                
+                SDA_reg = 1;
+                next_state = start;
+            end
+            start: begin
+                SDA_reg = 0;
+                next_state = address;
+            end
+            address: begin
+                SCL_reg = !SCL_reg;
+
             end 
             default: 
         endcase
