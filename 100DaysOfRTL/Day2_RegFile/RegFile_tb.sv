@@ -20,12 +20,12 @@ integer i;
 
 parameter MEM_WIDTH = 8, ADDRESS_SIZE = 4, MEM_DEPTH = 16;
 
-logic clk,
-logic rst,
-logic [MEM_WIDTH-1:0] data_in,
-logic [ADDRESS_SIZE-1:0] address_in,
-logic write_read_n,
-logic [MEM_WIDTH] data_out
+logic clk;
+logic rst;
+logic [MEM_WIDTH-1:0] data_in;
+logic [ADDRESS_SIZE-1:0] address_in;
+logic write_read_n;
+logic [MEM_WIDTH] data_out;
 
 // Clock definition
 localparam CLK_PERIOD = 10; // 100 Mhz (counter is in ns)
