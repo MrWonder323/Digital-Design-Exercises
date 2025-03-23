@@ -1,13 +1,13 @@
 module PE #(
-    n = 4
+    n = 8
 ) (
     input clk,
     input nrst,
-    input [n-1:0] X_in,
-    input [n-1:0] Y_in,
-    output logic [n-1:0] X_out,
-    output logic [n-1:0] Y_out,
-    output logic [2*n-1:0] result
+    input signed [n-1:0] X_in,
+    input signed [n-1:0] Y_in,
+    output logic signed [n-1:0] X_out,
+    output logic signed [n-1:0] Y_out,
+    output logic signed [2*n-1:0] result
 );
 
 // logic [2*n-1:0] result;

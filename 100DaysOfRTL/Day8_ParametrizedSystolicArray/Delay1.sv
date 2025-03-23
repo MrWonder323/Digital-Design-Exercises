@@ -1,13 +1,13 @@
 module delay_reg #(
-    n = 4, delay = 4
+    n = 8, delay = 4
 ) (
     input clk,
     input nrst,
-    input [n-1:0] D_in,
-    output [n-1:0] D_out
+    input signed [n-1:0] D_in,
+    output signed [n-1:0] D_out
 );
 
-    reg [n-1:0] delay_arr [0:delay-1];
+    reg signed [n-1:0] delay_arr [0:delay-1];
     assign D_out = delay_arr[0];
     
 

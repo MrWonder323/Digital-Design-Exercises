@@ -1,25 +1,25 @@
 module sysArray #(
-    n = 4, matrix_size = 3
+    n = 8, matrix_size = 3
 ) (
     input clk,
     input nrst,
-    input [n-1:0] dataA_in [0:matrix_size-1][0:matrix_size-1],
-    input [n-1:0] dataB_in [0:matrix_size-1][0:matrix_size-1],
-    output [2*n-1:0] dataC_out [0:matrix_size-1][0:matrix_size-1]
+    input signed [n-1:0] dataA_in [0:matrix_size-1][0:matrix_size-1],
+    input signed [n-1:0] dataB_in [0:matrix_size-1][0:matrix_size-1],
+    output signed [2*n-1:0] dataC_out [0:matrix_size-1][0:matrix_size-1]
 );
 
 // Internal connections between PEs
-logic [n-1:0] x_connections [0:matrix_size-1][0:matrix_size-1];
-logic [n-1:0] y_connections [0:matrix_size-1][0:matrix_size-1];
+logic signed [n-1:0] x_connections [0:matrix_size-1][0:matrix_size-1];
+logic signed [n-1:0] y_connections [0:matrix_size-1][0:matrix_size-1];
 
-logic [n-1:0] x_reg [0:matrix_size-1];
-logic [n-1:0] y_reg [0:matrix_size-1];
+logic signed [n-1:0] x_reg [0:matrix_size-1];
+logic signed [n-1:0] y_reg [0:matrix_size-1];
 
 logic [3:0] count;
 logic done;
 
-logic [n-1:0] dataB_delay [0:matrix_size-2];
-logic [n-1:0] dataA_delay [0:matrix_size-2];
+logic signed [n-1:0] dataB_delay [0:matrix_size-2];
+logic signed [n-1:0] dataA_delay [0:matrix_size-2];
 
 // Input rigesters getting there values from the input
 always @(posedge clk, negedge nrst) begin
